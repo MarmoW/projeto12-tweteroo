@@ -28,9 +28,13 @@ else{
 })
 
 server.get("/tweets", (req, res)  => {
+    if(AllTweets.lenght > 10){
 const Tweets10 = AllTweets.slice(-10)
 res.send(Tweets10)
-
+}
+   else{
+    res.send(AllTweets)
+   }
 
 })
 
