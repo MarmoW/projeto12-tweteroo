@@ -12,20 +12,21 @@ server.post("/sign-up", (req, res) => {
 let NewUser = req.body
 console.log(req.body)
 UserTwitter.push(NewUser)
-res.send("OK")
 console.log(UserTwitter)
+res.send("OK")
+
 })
 
 server.post("/tweets", (req, res) => {
 let UserRegistrado = UserTwitter.includes(req.body.username)
-
+let TweetNew = {username: req.body.username, tweet: req.body.tweet}
 if(UserRegistrado){
-    AllTweets.push(req.body)
-    res.send("OK")
+    AllTweets.push(TweetNew)
+    return res.send("OK")
     
 }
 else{
-    res.send("UNAUTHORIZED")
+    return res.send("UNAUTHORIZED")
 }
 })
 
