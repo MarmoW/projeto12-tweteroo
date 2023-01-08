@@ -7,6 +7,7 @@
   "name": "projeto12-tweteroo",
   "version": "1.0.0",
   "main": "src/app.js",
+  "type": "module",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
