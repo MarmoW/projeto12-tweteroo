@@ -5,7 +5,7 @@ const server = express()
 server.use(express.json())
 server.use(cors())
 
-let UserTwitter  =  []
+let UserTwitter  = []
 let AllTweets = []
 
 server.post("/sign-up", (req, res) => {
@@ -28,14 +28,12 @@ else{
 })
 
 server.get("/tweets", (req, res)  => {
-    if(AllTweets.lenght > 10){
-const Tweets10 = AllTweets.slice(-10)
-res.send(Tweets10)
-}
-   else{
-    res.send(AllTweets)
-   }
-
+let Tweets10 = AllTweets.slice(-10)
+let TweetAvatar = Tweets10.map(tweet => {
+let UserSeek = UserTwitter.find(usertwitter => usertwitter.username === tweet.username)
+return {username: tweet.username, avatar: UserSeek.avatar, tweet: tweet.tweet}
+})
+res.send(TweetAvatar)
 })
 
 server.listen(5000, () => {
