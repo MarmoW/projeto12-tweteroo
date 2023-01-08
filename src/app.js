@@ -17,10 +17,12 @@ console.log(UserTwitter)
 })
 
 server.post("/tweets", (req, res) => {
-let UserRegistrado = UserTwitter.includes(req.data)
+let UserRegistrado = UserTwitter.includes(req.body.username)
+
 if(UserRegistrado){
-    AllTweets.push(req.data)
+    AllTweets.push(req.body)
     res.send("OK")
+    
 }
 else{
     res.send("UNAUTHORIZED")
