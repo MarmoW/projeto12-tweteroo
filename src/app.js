@@ -18,16 +18,17 @@ res.send("OK")
 })
 
 server.post("/tweets", (req, res) => {
-let UserRegistrado = UserTwitter.includes(req.body.username)
-let TweetNew = {username: req.body.username, tweet: req.body.tweet}
-if(UserRegistrado){
-    AllTweets.push(TweetNew)
-    return res.send("OK")
-    
-}
-else{
+let {username, tweet} = req.body
+let UserRegistrado = UserTwitter.find(user => user.username === username)
+console.log(UserRegistrado)
+if(!UserRegistrado){
     return res.send("UNAUTHORIZED")
 }
+AllTweets.push({username: username, tweet: tweet})
+console.log(AllTweets)
+return res.send("OK")
+    
+
 })
 
 server.get("/tweets", (req, res)  => {
