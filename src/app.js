@@ -21,14 +21,14 @@ server.post("/tweets", (req, res) => {
 let {username, tweet} = req.body
 let UserRegistrado = UserTwitter.find(user => user.username === username)
 console.log(UserRegistrado)
-if(!UserRegistrado){
+if(UserRegistrado){
+    AllTweets.push({username: username, tweet: tweet})
+    console.log(AllTweets)
+    return res.send("OK")
+}
+else { 
     return res.send("UNAUTHORIZED")
 }
-AllTweets.push({username: username, tweet: tweet})
-console.log(AllTweets)
-return res.send("OK")
-    
-
 })
 
 server.get("/tweets", (req, res)  => {
